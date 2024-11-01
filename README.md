@@ -51,7 +51,7 @@ Follow these steps to set up the project on your local machine:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/django-ninja-blog.git
+git clone https://github.com/kwakuboateng-dev/django-ninja-blog.git
 cd django-ninja-blog
 ```
 
