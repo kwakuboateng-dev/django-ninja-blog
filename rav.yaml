@@ -1,0 +1,54 @@
+scripts:
+  init:
+    - mkdir src
+    - source venv/bin/activate
+  installs:
+    - venv/bin/python -m pip install pip --upgrade
+    - which python
+    - python --version
+  requirements:
+    - venv/bin/python -m pip install -r requirements.txt
+  server:
+    - cd src && python manage.py runserver 8000
+  makemigrations:
+    - cd src && python manage.py makemigrations
+  migrate:
+    - cd src && python manage.py migrate
+  shell:
+    - cd src && python manage.py shell
+  project:
+    - cd src && django-admin startproject
+  pg:
+    - cd src && django-admin startproject
+  application:
+    - cd src && django-admin startapp
+  app:
+    - cd src && django-admin startapp
+  sr:
+    - cd src && python manage.py runserver
+  mg:
+    - cd src && python manage.py makemigrations
+  m:
+    - cd src && python manage.py migrate
+  req:
+    - venv/bin/python -m pip install -r requirements.txt
+  su:
+    - cd src && python manage.py createsuperuser
+  login: |
+    curl -X POST -H "Content-Type: application/json" -d '{"username": "admin", "password": "1234"}' http://127.0.0.1:8000/api/token/pair
+  clean:
+  - |
+    find src -path "*/migrations/*.py" -not -name "__init__.py" -delete
+    find src -path "*/migrations/*.pyc" -delete
+    find src -name "__pycache__" -type d -exec rm -r {} +
+    cd src && rm -f db.sqlite3
+    rm -rf logs
+    rm -rf media
+  posts:
+    - cd src && python manage.py create_sample_posts 10
+  comments:
+    - cd src && python manage.py create_sample_comments 10
+  users:
+    - cd src && python manage.py users
+  admin:
+    - cd src && python manage.py create_admin_user
